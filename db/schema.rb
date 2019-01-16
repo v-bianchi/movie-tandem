@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_011939) do
+ActiveRecord::Schema.define(version: 2019_01_16_014109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lists", force: :cascade do |t|
+    t.bigint "user_1_id"
+    t.bigint "user_2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_1_id"], name: "index_lists_on_user_1_id"
+    t.index ["user_2_id"], name: "index_lists_on_user_2_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_requests_on_receiver_id"
+    t.index ["sender_id"], name: "index_requests_on_sender_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +47,8 @@ ActiveRecord::Schema.define(version: 2019_01_16_011939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lists", "users", column: "user_1_id"
+  add_foreign_key "lists", "users", column: "user_2_id"
+  add_foreign_key "requests", "users", column: "receiver_id"
+  add_foreign_key "requests", "users", column: "sender_id"
 end
