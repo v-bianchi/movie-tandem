@@ -117,6 +117,8 @@ GEM
     pg (1.1.4)
     public_suffix (3.0.3)
     puma (3.12.0)
+    pundit (2.0.0)
+      activesupport (>= 3.0.0)
     rack (2.0.6)
     rack-proxy (0.6.5)
       rack
@@ -171,6 +173,10 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    simple_token_authentication (1.15.1)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -224,10 +230,12 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.1)
   rb-readline
   sass-rails (~> 5.0)
   selenium-webdriver
+  simple_token_authentication
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

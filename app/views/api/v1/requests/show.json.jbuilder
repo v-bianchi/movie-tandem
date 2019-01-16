@@ -1,0 +1,1 @@
+json.extract! @request, :id, :sender_id, :receiver_id

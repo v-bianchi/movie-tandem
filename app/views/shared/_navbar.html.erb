@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <div class="navbar__brand">Movie Tandem</div>
+  <% if user_signed_in? %>
+    <div>Signed in as <%= current_user.first_name %></div>
+    <div><%= link_to 'Sign out', destroy_user_session_path%></div>
+  <% else %>
+    <div><%= link_to 'Sign up', new_user_registration_path%></div>
+    <div><%= link_to 'Sign in', new_user_session_path%></div>
+  <% end %>
+</nav>
