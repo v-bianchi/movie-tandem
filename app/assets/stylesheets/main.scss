@@ -1,13 +1,4 @@
 #react-root {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  border: 1px solid black;
-
-  margin-top: 10px;
-  padding: 10px;
-  min-height: 80vh;
 }
 
 .navbar {
@@ -24,4 +15,38 @@
   &__brand {
     flex: 1;
   }
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+
+  border: 1px solid black;
+
+  margin-top: 10px;
+  padding: 10px;
+  min-height: 80vh;
+}
+
+.side-nav {
+  flex: 0 0 30%;
+
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.movie-list {
+  flex: 1;
+
+  padding: 10px;
+  border: 1px solid black;
+
+  &__item {
+    cursor: pointer;
+  }
+}
+
+.hidden {
+  display: none;
 }

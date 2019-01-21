@@ -1,11 +1,15 @@
-import React from "react";
+import React from "react"
+
+import SideNav from '../containers/side_nav'
+import MovieList from '../containers/movie_list'
 
 const App = () => {
   return (
-    <div className="row">
-      <h2>REACT JUST KICKED IN, BRO</h2>
+    <div className="main-content">
+      <SideNav />
+      <MovieList />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
