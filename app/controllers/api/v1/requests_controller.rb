@@ -7,8 +7,8 @@ class Api::V1::RequestsController < Api::V1::BaseController
   end
 
   def create
-    @request = Request.new(request_params)
-    @request.sender = current_user
+    receiver = User.find_by(email: params["request"]["receiver_email"])
+    @request = Request.new(sender: current_user, receiver: receiver)
     authorize @request
     if @request.save
       render :show, status: :created
@@ -38,10 +38,6 @@ class Api::V1::RequestsController < Api::V1::BaseController
   def set_request
     @request = Request.find(params[:id])
     authorize @request  # For Pundit
-  end
-
-  def request_params
-    params.require(:request).permit(:receiver_id)
   end
 
   def render_error(entity)

@@ -146,8 +146,8 @@ export function removeRequest(requestId, userData) {
     })
 }
 
-export function sendRequest(receiverId, userData) {
-  const url = `/api/v1/lists/${listId}/movies`
+export function sendRequest(receiverEmail, userData) {
+  const url = `/api/v1/requests`
   return fetch(url, {
     method: "POST",
     headers: {
@@ -155,7 +155,7 @@ export function sendRequest(receiverId, userData) {
       "X-User-Email": userData.email,
       "X-User-Token": userData.token
     },
-    body: JSON.stringify({ request: {receiver_id: receiverId} })
+    body: JSON.stringify({ request: {receiver_email: receiverEmail} })
   })
     .then(response => response.json())
     .then((data) => {
