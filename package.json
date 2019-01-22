@@ -13,6 +13,7 @@
     "redux-promise": "^0.6.0"
   },
   "devDependencies": {
+    "dotenv-webpack": "^1.7.0",
     "webpack-dev-server": "2.11.2"
   }
 }
