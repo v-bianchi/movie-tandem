@@ -30,3 +30,7 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore .env and secret files containing API keys
+.env
+secret.js

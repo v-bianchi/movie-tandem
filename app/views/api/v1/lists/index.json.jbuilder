@@ -1,5 +1,10 @@
 json.array! @lists do |list|
-  json.extract! list, :id, :user_1_id
+  json.extract! list, :id
+  json.user_1 do
+    json.id list.user_1.id
+    json.first_name list.user_1.first_name
+    json.last_name list.user_1.last_name
+  end
   json.user_2 do
     json.id list.user_2.id
     json.first_name list.user_2.first_name

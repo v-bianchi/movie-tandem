@@ -10,9 +10,18 @@ class SideNavItem extends Component {
   }
 
   render() {
+    const otherPersonName = this.props.watchlist.user_1_id == this.props.userData.id
+                          ? this.props.watchlist.user_2.first_name
+                          : this.props.watchlist.user_1.first_name
     return (
-      <li className='side-nav__item cursor-pointer' onClick={this.handleClick}>{this.props.watchlist.user_2.first_name}</li>
+      <li className='side-nav__item cursor-pointer' onClick={this.handleClick}>{otherPersonName}</li>
     )
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    userData: state.userData
   }
 }
 
@@ -20,4 +29,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectWatchlist }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SideNavItem)
+export default connect(mapStateToProps, mapDispatchToProps)(SideNavItem)

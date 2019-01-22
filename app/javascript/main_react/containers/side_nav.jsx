@@ -15,9 +15,11 @@ class SideNav extends Component {
   }
 
   // componentDidMount() {
-  //   const interval = setInterval(() => {
-  //     this.props.fetchWatchlists(this.props.userData)
-  //   },3000);
+  //   if (this.props.userData) {
+  //     const interval = setInterval(() => {
+  //       this.props.fetchWatchlists(this.props.userData)
+  //     },10000);
+  //   }
   // }
 
   // componentWillUnmount() {
@@ -33,6 +35,16 @@ class SideNav extends Component {
             return <SideNavItem key={index} watchlist={watchlist} tabIndex={index} />
           })}
         </ul>
+        <h3>Pending requests</h3>
+        <ul>
+          <li>list</li>
+          <li>of</li>
+          <li>requests</li>
+          <li>goes</li>
+          <li>here</li>
+        </ul>
+        <h5>Create a watchlist with a new friend!</h5>
+        <input type="email" placeholder="email"/>
       </div>
     )
   }

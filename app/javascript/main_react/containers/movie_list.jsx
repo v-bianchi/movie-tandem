@@ -18,9 +18,12 @@ class MovieList extends Component {
 
   render() {
     if(this.props.selectedWatchlist.id) {
+      const otherPersonName = this.props.selectedWatchlist.user_1_id == this.props.userData.id
+                            ? this.props.selectedWatchlist.user_2.first_name
+                            : this.props.selectedWatchlist.user_1.first_name
       return (
         <div className="movie-list">
-          <h3>This is your watchlist with {this.props.selectedWatchlist.user_2.first_name}</h3>
+          <h3>This is your watchlist with {otherPersonName}</h3>
           <ul>
             {this.props.movies.map((movie, index) => {
               return (

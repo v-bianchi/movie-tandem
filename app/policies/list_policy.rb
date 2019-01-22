@@ -1,7 +1,7 @@
 class ListPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user_1: user).order(created_at: :asc)
+      scope.where("user_1_id = ? OR user_2_id = ?", user.id, user.id)
     end
   end
 

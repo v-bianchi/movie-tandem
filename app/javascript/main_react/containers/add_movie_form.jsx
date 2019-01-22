@@ -1,41 +1,57 @@
 import React, { Component } from "react"
-import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 
-import { addMovie } from '../actions'
+import SuggestionsBox from './suggestions_box'
 
-const titanicMovieObj = {
-  title: "Titanic",
-  year: "1997",
-  genre: "Drama",
-  overview: "84 years later, a 101-year-old woman named Rose DeWitt Bukater tells the story to her granddaughter Lizzy Calvert, Brock Lovett, Lewis Bodine, Bobby Buell and Anatoly Mikailavich on the Keldysh about her life set in April 10th 1912, on a ship called Titanic when young Rose boards the departing ship with the upper-class passengers and her mother, Ruth DeWitt Bukater, and her fiancé, Caledon Hockley. Meanwhile, a drifter and artist named Jack Dawson and his best friend Fabrizio De Rossi win third-class tickets to the ship in a game. And she explains the whole story from departure until the death of Titanic on its first and last voyage April 15th, 1912 at 2:20 in the morning."
-}
-const matrixMovieObj = {
-  title: "The Matrix",
-  year: "1999",
-  genre: "Action, Science fiction",
-  overview: "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth."
-}
+import TMDB_API_KEY from '../secret.js' //TODO: FIND BETTER SOLUTION (ENV VARIABLE?)
+
 
 class AddMovieForm extends Component {
+  constructor(props) {
+    super(props);
 
-  handleSubmitTitanic = (event) => {
-    event.preventDefault()
-    this.props.addMovie(titanicMovieObj, this.props.selectedWatchlist.id, this.props.userData)
+    this.state = {
+      // The suggestions that match the user's input
+      suggestions: [],
+      // What the user has entered
+      userInput: ""
+    };
   }
-  handleSubmitMatrix = (event) => {
-    event.preventDefault()
-    this.props.addMovie(matrixMovieObj, this.props.selectedWatchlist.id, this.props.userData)
+
+  componentWillReceiveProps() {
+    this.setState({
+      suggestions: [],
+      userInput: ""
+    })
+    document.getElementById('add-movie-input').value = ''
+  }
+
+  handleChange = (event) => {
+    this.setState({ userInput : event.currentTarget.value})
+    setTimeout(() => {
+      if(this.state.userInput.length > 3) {
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${this.state.userInput}&page=1&include_adult=false`
+        fetch(url)
+          .then(response => response.json())
+          .then((data) => {
+            const suggestionsArray = data.results.slice(0, 4).map((elt) => ({
+              title: elt.title,
+              year: parseInt(elt.release_date.slice(0, 4), 10),
+              genre: "TODO",
+              overview: elt.overview
+            }))
+            this.setState({ suggestions: suggestionsArray})
+          })
+        console.log('suggestions', this.state.suggestions)
+      }
+    }, 100)
   }
 
   render() {
     return (
       <div className="add-movie-form">
-        <input type="text" placeholder="Add movie &#128270;" onChange={this.handleChange}/>
-        {/* THIS IS TEMPORARY. TODO: ADD THEMOVIEDB INTEGRATION AND AUTOCOMPLETE */}
-        <button onClick={this.handleSubmitTitanic}>Add Titanic</button>
-        <button onClick={this.handleSubmitMatrix}>Add The Matrix</button>
-
+        <input id="add-movie-input" type="text" placeholder="Add movie &#128270;" onChange={this.handleChange}/>
+        <SuggestionsBox suggestions={this.state.suggestions}/>
       </div>
     )
   }
@@ -48,8 +64,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addMovie }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddMovieForm)
+export default connect(mapStateToProps, null)(AddMovieForm)
