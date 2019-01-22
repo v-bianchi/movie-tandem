@@ -34,6 +34,10 @@
 
   padding: 10px;
   border: 1px solid black;
+
+  &__item {
+    margin-bottom: 10px;
+  }
 }
 
 .movie-list {
@@ -42,11 +46,15 @@
   padding: 10px;
   border: 1px solid black;
 
-  &__item {
-    cursor: pointer;
+  &__item-caret {
+    float: right;
   }
 }
 
 .hidden {
   display: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

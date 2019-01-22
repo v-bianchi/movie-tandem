@@ -2,41 +2,55 @@ import React, { Component } from "react"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 
+import Movie from './movie'
+import AddMovieForm from './add_movie_form'
+
+import { fetchMovies } from '../actions'
+
 class MovieList extends Component {
 
-  onItemClick = (event) => {
-    event.currentTarget.querySelector('.movie-list__item-info').classList.toggle('hidden');
+  componentDidUpdate(prevProps) {
+    // Only fetch new movies array if NEW buddy is selected
+    if(this.props.selectedWatchlist.id !== prevProps.selectedWatchlist.id ) {
+      this.props.fetchMovies(this.props.selectedWatchlist.id, this.props.userData)
+    }
   }
 
   render() {
-    return (
-      <div className="movie-list">
-        <h3>This is your watchlist with {this.props.selectedWatchlist.user_2.first_name}</h3>
-          {this.props.movies.map((movie, index) => {
-            return (
-              <ul key={index} movie={movie}>
-                <li className="movie-list__item" onClick={this.onItemClick}>
-                  <p><strong>{movie.title}</strong></p>
-                  <div className="movie-list__item-info hidden">
-                    <p>{movie.year}</p>
-                    <p><em>{movie.genre}</em></p>
-                    <p>{movie.overview}</p>
-                  </div>
-                </li>
-              </ul>
-            )
-          })}
-      </div>
-    )
+    if(this.props.selectedWatchlist.id) {
+      return (
+        <div className="movie-list">
+          <h3>This is your watchlist with {this.props.selectedWatchlist.user_2.first_name}</h3>
+          <ul>
+            {this.props.movies.map((movie, index) => {
+              return (
+                <Movie className="movie-list__item" key={index} movie={movie}/>
+              )
+            })}
+          </ul>
+          <AddMovieForm />
+        </div>
+      )
+    } else {
+      return (
+        <div className="movie-list">
+          <p>Select a buddy to view your watchlist with them</p>
+        </div>
+      )
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
     selectedWatchlist: state.selectedWatchlist,
-    movies: state.movies
+    movies: state.movies,
+    userData: state.userData
   }
 }
 
-// export default MovieList
-export default connect(mapStateToProps, null)(MovieList)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchMovies }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList)
