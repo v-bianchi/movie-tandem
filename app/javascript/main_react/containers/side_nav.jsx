@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux"
 
 import SideNavItem from "./side_nav_item"
+import SendRequestForm from "./send_request_form"
+import RequestList from "./request_list"
 
 import { fetchWatchlists } from '../actions'
 
@@ -35,16 +37,8 @@ class SideNav extends Component {
             return <SideNavItem key={index} watchlist={watchlist} tabIndex={index} />
           })}
         </ul>
-        <h3>Pending requests</h3>
-        <ul>
-          <li>list</li>
-          <li>of</li>
-          <li>requests</li>
-          <li>goes</li>
-          <li>here</li>
-        </ul>
-        <h5>Create a watchlist with a new friend!</h5>
-        <input type="email" placeholder="email"/>
+        <RequestList />
+        <SendRequestForm />
       </div>
     )
   }
@@ -53,6 +47,7 @@ class SideNav extends Component {
 function mapStateToProps(state) {
   return {
     watchlists: state.watchlists,
+    requests: state.requests,
     userData: state.userData
   }
 }

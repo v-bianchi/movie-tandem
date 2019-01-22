@@ -10,7 +10,7 @@ class SideNavItem extends Component {
   }
 
   render() {
-    const otherPersonName = this.props.watchlist.user_1_id == this.props.userData.id
+    const otherPersonName = this.props.watchlist.user_1.id == this.props.userData.id
                           ? this.props.watchlist.user_2.first_name
                           : this.props.watchlist.user_1.first_name
     return (

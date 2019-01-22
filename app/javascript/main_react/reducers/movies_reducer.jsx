@@ -1,6 +1,4 @@
-import { FETCH_MOVIES } from '../actions'
-import { TOGGLE_WATCHED } from '../actions'
-import { ADD_MOVIE } from '../actions'
+import { FETCH_MOVIES, TOGGLE_WATCHED, ADD_MOVIE } from '../actions'
 
 export default function(state = null, action) {
   switch (action.type) {

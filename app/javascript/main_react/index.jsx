@@ -14,6 +14,7 @@ import watchlistsReducer from './reducers/watchlists_reducer'
 import selectedWatchlistReducer from './reducers/selected_watchlist_reducer'
 import moviesReducer from './reducers/movies_reducer'
 import userDataReducer from './reducers/user_data_reducer'
+import requestsReducer from './reducers/requests_reducer'
 
 const root = document.getElementById("react-root")
 
@@ -21,14 +22,16 @@ const reducers = combineReducers({
   watchlists: watchlistsReducer,
   selectedWatchlist: selectedWatchlistReducer,
   movies: moviesReducer,
-  userData: userDataReducer
+  userData: userDataReducer,
+  requests: requestsReducer
 });
 
 const initialState = {
   watchlists: [],
   selectedWatchlist: {},
   movies: [],
-  userData : JSON.parse(root.dataset.user)
+  userData : JSON.parse(root.dataset.user),
+  requests: []
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
