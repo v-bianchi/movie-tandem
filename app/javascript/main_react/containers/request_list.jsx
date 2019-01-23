@@ -16,7 +16,7 @@ class RequestList extends Component {
 
   render() {
     return (
-      <div className="requests">
+      <div className="requests p-3">
         {/* Requests SENT by current user */}
         {this.props.requests.filter((elt) => elt.sender.id == this.props.userData.id).map((request, index) => {
           return (

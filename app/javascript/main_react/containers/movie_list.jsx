@@ -22,9 +22,9 @@ class MovieList extends Component {
                             ? this.props.selectedWatchlist.user_2.first_name
                             : this.props.selectedWatchlist.user_1.first_name
       return (
-        <div className="movie-list">
-          <h3>This is your watchlist with {otherPersonName}</h3>
-          <ul>
+        <div className="movie-list p-4">
+          <h3 className="mb-4">Your watchlist with {otherPersonName}</h3>
+          <ul className="list-unstyled">
             {this.props.movies.map((movie, index) => {
               return (
                 <Movie className="movie-list__item" key={index} movie={movie}/>
@@ -36,7 +36,7 @@ class MovieList extends Component {
       )
     } else {
       return (
-        <div className="movie-list">
+        <div className="movie-list p-4">
           <p>Select a buddy to view your watchlist with them</p>
         </div>
       )

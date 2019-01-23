@@ -30,9 +30,8 @@ class SideNav extends Component {
 
   render() {
     return (
-      <div className="side-nav">
-        <h3>Your movie buddies</h3>
-        <ul>
+      <div className="side-nav bg-dark text-light py-sm-4">
+        <ul className="list-unstyled d-flex flex-row flex-sm-column justify-content-around justify-content-sm-start">
           {this.props.watchlists.map((watchlist, index) => {
             return <SideNavItem key={index} watchlist={watchlist} tabIndex={index} />
           })}

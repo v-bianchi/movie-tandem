@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 import { toggleWatched } from '../actions'
 
 class Movie extends Component {
-  handleMovieInfoClick = (event) => {
-    event.currentTarget.querySelector('.movie-list__item-info').classList.toggle('hidden')
-  }
-
   handleToggleWatchedClick = (event) => {
     event.preventDefault()
     this.props.toggleWatched(this.props.movie.id, this.props.userData)
@@ -16,21 +12,24 @@ class Movie extends Component {
 
   render() {
     return (
-      <li onClick={this.handleMovieInfoClick} className="cursor-pointer">
-        <p>
-          <strong>{this.props.movie.title}</strong> - 
-          {this.props.movie.watched ? "WATCHED" : "NOT WATCHED"}
-          <span className="movie-list__item-caret"><small>&#9660;</small></span>
-        </p>
-        <div className="movie-list__item-info hidden">
-          <p>{this.props.movie.year}</p>
-          <p><em>{this.props.movie.genre}</em></p>
-          <p>{this.props.movie.overview}</p>
-          <button onClick={this.handleToggleWatchedClick}>
-            Mark as {this.props.movie.watched ? "unwatched" : "watched"}
-          </button>
-        </div>
-      </li>
+      <div>
+        <li>
+          <p className="cursor-pointer" data-toggle="collapse" data-target={`#collapse-${this.props.movie.id}`} aria-expanded="false" aria-controls={`collapse-${this.props.movie.id}`}>
+            <strong>{this.props.movie.title}</strong> - 
+            {this.props.movie.watched ? "WATCHED" : "NOT WATCHED"}
+          </p>
+          <div className="movie-list__item-info collapse" id={`collapse-${this.props.movie.id}`}>
+            <div className="card card-body">
+              <p>{this.props.movie.year}</p>
+              <p><em>{this.props.movie.genre}</em></p>
+              <p>{this.props.movie.overview}</p>
+              <button className="btn btn-dark" onClick={this.handleToggleWatchedClick}>
+                Mark as {this.props.movie.watched ? "unwatched" : "watched"}
+              </button>
+            </div>
+          </div>
+        </li>
+      </div>
     )
   }
 }

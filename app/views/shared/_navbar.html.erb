@@ -1,10 +1,24 @@
-<nav class="navbar">
-  <div class="navbar__brand">Movie Tandem</div>
-  <% if user_signed_in? %>
-    <div>Signed in as <%= current_user.first_name %></div>
-    <div><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></div>
-  <% else %>
-    <div><%= link_to 'Sign up', new_user_registration_path%></div>
-    <div><%= link_to 'Sign in', new_user_session_path%></div>
-  <% end %>
+<nav class="navbar navbar-expand-sm navbar-light">
+  <a href="<%= root_path %>" class="navbar-brand d-flex align-items-center">
+    <%= image_tag 'film.png', width: 40 %>
+    <span class="ml-2">Movie Tandem</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto align-items-sm-center">
+      <% if user_signed_in? %>
+        <li class="navbar-text d-flex align-items-center">
+          <span class="mr-2">signed in as <%= current_user.first_name %></span>
+          <img src="http://i.pravatar.cc/100" alt="Picture of <%= current_user.first_name %>" class="user-image"/>
+        </li>
+        <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+      <% else %>
+        <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: "nav-link" %></li>
+      <% end %>
+    </ul>
+  </div>
 </nav>

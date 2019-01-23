@@ -12,10 +12,32 @@ class SendRequestForm extends Component {
 
   render() {
     return (
-      <div className="send-request-form">
-        <h5>Create a watchlist with a new friend!</h5>
-        <input id="send-request-input" type="email" placeholder="email"/>
-        <button onClick={this.handleClick}>Send request</button>
+      <div>
+        {/* Modal trigger button */}
+        <div className="text-center">
+          <button type="button" className="btn btn-warning btn-sm" data-toggle="modal" data-target="#sendRequestModal">
+            Add new friend
+          </button>
+        </div>
+
+        {/* Modal */}
+        <div className="modal fade" id="sendRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered text-dark" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Add new friend</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>Please enter your friend's email address</p>
+                <input id="send-request-input" type="email" placeholder="email"/>
+                <button onClick={this.handleClick}>Send request</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

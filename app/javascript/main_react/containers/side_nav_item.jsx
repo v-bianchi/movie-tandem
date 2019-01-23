@@ -14,14 +14,23 @@ class SideNavItem extends Component {
                           ? this.props.watchlist.user_2.first_name
                           : this.props.watchlist.user_1.first_name
     return (
-      <li className='side-nav__item cursor-pointer' onClick={this.handleClick}>{otherPersonName}</li>
+      <li onClick={this.handleClick}
+        className={this.props.selectedWatchlist.id == this.props.watchlist.id
+                    ? 'd-flex align-items-center p-3 selected'
+                    : 'd-flex align-items-center p-3'
+                  }
+      >
+        <img src="http://i.pravatar.cc/100" alt={`Picture of ${otherPersonName}`} className="user-image"/>
+        <span className="ml-2">{otherPersonName}</span>
+      </li>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    userData: state.userData
+    userData: state.userData,
+    selectedWatchlist: state.selectedWatchlist
   }
 }
 
