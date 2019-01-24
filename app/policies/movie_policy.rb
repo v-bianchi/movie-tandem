@@ -14,6 +14,6 @@ class MoviePolicy < ApplicationPolicy
   end
 
   def toggle_watched?
-    destroy? || record.list.user_1 == user
+    record.list.user_1 == user || record.list.user_2 == user
   end
 end
