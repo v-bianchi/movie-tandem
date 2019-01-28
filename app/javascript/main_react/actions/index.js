@@ -7,6 +7,7 @@ export const FETCH_REQUESTS = 'FETCH_REQUESTS'
 export const ACCEPT_REQUEST = 'ACCEPT_REQUEST'
 export const REMOVE_REQUEST = 'REMOVE_REQUEST'
 export const SEND_REQUEST = 'SEND_REQUEST'
+export const REMOVE_MOVIE = 'REMOVE_MOVIE'
 
 export function fetchWatchlists(userData) {
   const url = "/api/v1/lists"
@@ -162,6 +163,24 @@ export function sendRequest(receiverEmail, userData) {
       return {
         type: SEND_REQUEST,
         payload: data
+      }
+    })
+}
+
+export function removeMovie(movieId, userData) {
+  const url = `/api/v1/movies/${movieId}`
+  return fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "X-User-Email": userData.email,
+      "X-User-Token": userData.token
+    }
+  }).then((data) => {
+      return {
+        type: REMOVE_MOVIE,
+        payload: data,
+        deletedMovieId: movieId
       }
     })
 }

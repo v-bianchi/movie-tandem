@@ -51,8 +51,23 @@ body {
   border: 1px solid white
 }
 
+.trash-icon {
+  
+}
+
 // UTILITIES
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.todo-item-done {
+  opacity: 0.6;
+
+  &::after {
+    content: '✓';
+    color: $success;
+    text-decoration: none;
+    margin-left: .5rem;
+  }
 }

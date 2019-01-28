@@ -15,6 +15,10 @@ class MovieList extends Component {
       this.props.fetchMovies(this.props.selectedWatchlist.id, this.props.userData)
     }
   }
+  
+  componentWillUpdate() {
+    $('.collapse').each(function() {$(this).collapse('hide')}) // collapse all movie info
+  }
 
   render() {
     if(this.props.selectedWatchlist.id) {

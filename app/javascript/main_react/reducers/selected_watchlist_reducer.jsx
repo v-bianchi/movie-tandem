@@ -5,6 +5,6 @@ export default function(state = null, action) {
     case SELECT_WATCHLIST:
       return action.payload.watchlist
     default:
-      return state;
+      return state
   }
 }

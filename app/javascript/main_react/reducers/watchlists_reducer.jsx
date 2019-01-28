@@ -7,6 +7,6 @@ export default function(state = null, action) {
     case ACCEPT_REQUEST:
       return state.concat(action.payload)
     default:
-      return state;
+      return state
   }
 }
