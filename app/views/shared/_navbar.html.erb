@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-light">
+<nav class="navbar navbar-expand-md navbar-light">
   <a href="<%= root_path %>" class="navbar-brand d-flex align-items-center">
     <%= image_tag 'film.png', width: 40 %>
     <span class="ml-2">Movie Tandem</span>
@@ -8,7 +8,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto align-items-sm-center">
+    <ul class="navbar-nav ml-auto align-items-md-center">
       <% if user_signed_in? %>
         <li class="navbar-text d-flex align-items-center">
           <span class="mr-2">signed in as <%= current_user.first_name %></span>

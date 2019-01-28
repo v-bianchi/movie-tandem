@@ -5,7 +5,7 @@ import MovieList from '../containers/movie_list'
 
 const App = () => {
   return (
-    <div className="main-content d-flex flex-column flex-sm-row">
+    <div className="main-content d-flex flex-column flex-md-row">
       <SideNav />
       <MovieList />
     </div>
