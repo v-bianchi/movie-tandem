@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_153857) do
+ActiveRecord::Schema.define(version: 2019_01_28_200435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_153857) do
     t.datetime "updated_at", null: false
     t.boolean "watched"
     t.bigint "user_id"
+    t.string "poster_path"
     t.index ["list_id"], name: "index_movies_on_list_id"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end

@@ -28,22 +28,40 @@ export function fetchWatchlists(userData) {
 }
 
 export function addMovie(movieFromSearch, listId, userData) {
-  const url = `/api/v1/lists/${listId}/movies`
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-User-Email": userData.email,
-      "X-User-Token": userData.token
-    },
-    body: JSON.stringify({ movie: movieFromSearch })
-  })
+  // Fetch genres object
+  const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_API_KEY}&language=en-US
+  `
+  return fetch(genresUrl)
     .then(response => response.json())
-    .then((data) => {
-      return {
-        type: ADD_MOVIE,
-        payload: data
-      }
+    .then((genresData) => {
+      const genreObjectsArray = genresData.genres
+      console.log('genreObjectsArray', genreObjectsArray)
+      // Build movie genre string from genre objects array
+      const genreString = movieFromSearch.genre_ids.map((genreId) => {
+        return genreObjectsArray.find((genreObj) => genreObj.id == genreId).name
+      }).toString().replace(/,/g, ', ');
+      console.log('genreString and should be correct', genreString)
+      // Add genre string to movieFromSearch
+      movieFromSearch.genre = genreString
+      console.log('movie to be added', movieFromSearch)
+      // Add movie
+      const url = `/api/v1/lists/${listId}/movies`
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-User-Email": userData.email,
+          "X-User-Token": userData.token
+        },
+        body: JSON.stringify({ movie: movieFromSearch })
+      })
+        .then(response => response.json())
+        .then((data) => {
+          return {
+            type: ADD_MOVIE,
+            payload: data
+          }
+        })
     })
 }
 

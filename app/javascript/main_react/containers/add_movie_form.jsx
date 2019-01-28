@@ -34,12 +34,12 @@ class AddMovieForm extends Component {
             const suggestionsArray = data.results.slice(0, 4).map((elt) => ({
               title: elt.title,
               year: parseInt(elt.release_date.slice(0, 4), 10),
-              genre: "TODO",
-              overview: elt.overview
+              overview: elt.overview,
+              genre_ids: elt.genre_ids,
+              poster_path: elt.poster_path
             }))
             this.setState({ suggestions: suggestionsArray})
           })
-        console.log('suggestions', this.state.suggestions)
       }
     }, 100)
   }
@@ -57,6 +57,7 @@ class AddMovieForm extends Component {
 function mapStateToProps(state) {
   return {
     selectedWatchlist: state.selectedWatchlist,
+    movies: state.movies,
     userData: state.userData
   }
 }
