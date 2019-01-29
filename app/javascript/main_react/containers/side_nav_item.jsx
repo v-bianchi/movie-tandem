@@ -10,9 +10,9 @@ class SideNavItem extends Component {
   }
 
   render() {
-    const otherPersonName = this.props.watchlist.user_1.id == this.props.userData.id
-                          ? this.props.watchlist.user_2.first_name
-                          : this.props.watchlist.user_1.first_name
+    const otherPerson = this.props.watchlist.user_1.id == this.props.userData.id
+                      ? this.props.watchlist.user_2
+                      : this.props.watchlist.user_1
     return (
       <li onClick={this.handleClick}
         className={this.props.selectedWatchlist.id == this.props.watchlist.id
@@ -20,8 +20,8 @@ class SideNavItem extends Component {
                     : 'd-flex align-items-center p-3'
                   }
       >
-        <img src="http://i.pravatar.cc/100" alt={`Picture of ${otherPersonName}`} className="user-image"/>
-        <span className="ml-2">{otherPersonName}</span>
+        <img src={otherPerson.photo.avatar.url} alt={`Picture of ${otherPerson.name}`} className="user-image"/>
+        <span className="ml-2">{otherPerson.name}</span>
       </li>
     )
   }
