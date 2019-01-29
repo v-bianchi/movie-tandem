@@ -18,6 +18,21 @@ class Movie extends Component {
   }
 
   render() {
+    let removeButton = ''
+    if (this.props.movie.added_by.id === this.props.userData.id) {
+      removeButton =  <button
+                        className="btn btn-danger m-1"
+                        data-toggle="modal"
+                        data-target={`#removeModal-${this.props.movie.id}`}
+                      >
+                        Remove
+                      </button>
+    } else {
+      removeButton =  <button  className="btn btn-danger m-1 disabled" disabled>
+                        Remove
+                      </button>
+    }
+
     return (
       <div>
         <li>
@@ -42,9 +57,7 @@ class Movie extends Component {
                 <img className="movie__poster ml-lg-3" src={'https://image.tmdb.org/t/p/w300' + this.props.movie.poster_path} alt={`Movie poster for ${this.props.movie.title}`}/>
               </div>
               <div className="d-flex">
-                <button className="btn btn-danger m-1" data-toggle="modal" data-target={`#removeModal-${this.props.movie.id}`}>
-                  Remove
-                </button>
+                {removeButton}
                 <button className="btn btn-dark m-1 flex-grow-1" onClick={this.handleToggleWatchedClick}>
                   Mark as {this.props.movie.watched ? "unwatched" : "watched"}
                 </button>
