@@ -47,7 +47,13 @@ class AddMovieForm extends Component {
   render() {
     return (
       <div className="add-movie-form">
-        <input id="add-movie-input" type="text" placeholder="Add movie &#128270;" onChange={this.handleChange}/>
+        <input
+          id="add-movie-input"
+          className="form-control"
+          type="text"
+          placeholder="Add movie &#128270;"
+          onChange={this.handleChange}
+        />
         <SuggestionsBox suggestions={this.state.suggestions}/>
       </div>
     )

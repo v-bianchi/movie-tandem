@@ -14,7 +14,7 @@ class SuggestionsBox extends Component {
           return (
             <div className="suggestions-box__item" key={index} suggestion={suggestion}>
               <p>
-                <button onClick={() => this.props.addMovie(
+                <button className="btn btn-sm btn-success" onClick={() => this.props.addMovie(
                   suggestion,
                   this.props.selectedWatchlist.id,
                   this.props.userData

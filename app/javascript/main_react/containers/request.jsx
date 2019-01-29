@@ -25,9 +25,11 @@ class Request extends Component {
     } else if (this.props.nature === "received") {
       return (
         <div>
-          <p>{this.props.request.sender.first_name} wants to create a watchlist with you!</p>
-          <button onClick={this.handleAcceptClick}>Accept</button>
-          <button onClick={this.handleDeclineClick}>Decline</button>
+          <p className="mb-1">{this.props.request.sender.first_name} wants to create a watchlist with you!</p>
+          <div className="d-flex justify-content-between">
+            <button onClick={this.handleAcceptClick} className="btn btn-sm btn-success">Accept</button>
+            <button onClick={this.handleDeclineClick} className="btn btn-sm btn-danger">Decline</button>
+          </div>
         </div>
       )
     }

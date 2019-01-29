@@ -14,7 +14,7 @@ class SendRequestForm extends Component {
     return (
       <div>
         {/* Modal trigger button */}
-        <div className="text-center">
+        <div className="text-center my-4">
           <button type="button" className="btn btn-warning btn-sm" data-toggle="modal" data-target="#sendRequestModal">
             Add new friend
           </button>
@@ -32,8 +32,8 @@ class SendRequestForm extends Component {
               </div>
               <div className="modal-body">
                 <p>Please enter your friend's email address</p>
-                <input id="send-request-input" type="email" placeholder="email"/>
-                <button onClick={this.handleClick}>Send request</button>
+                <input id="send-request-input" type="email" placeholder="email" className="form-control"/>
+                <button onClick={this.handleClick} className="btn btn-warning mt-2 w-100">Send request</button>
               </div>
             </div>
           </div>
