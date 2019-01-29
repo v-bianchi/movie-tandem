@@ -51,8 +51,10 @@ body {
   border: 1px solid white
 }
 
-.trash-icon {
-  
+.movie {
+  &__poster {
+    object-fit: contain;
+  }
 }
 
 // UTILITIES

@@ -31,7 +31,7 @@ class MovieList extends Component {
           <ul className="list-unstyled">
             {this.props.movies.map((movie, index) => {
               return (
-                <Movie className="movie-list__item" key={index} movie={movie}/>
+                <Movie className="" key={index} movie={movie}/>
               )
             })}
           </ul>

@@ -31,12 +31,16 @@ class Movie extends Component {
           >
             <strong>{this.props.movie.title}</strong>
           </p>
-          <div className="movie-list__item-info collapse" id={`collapse-${this.props.movie.id}`}>
+          <div className="movie__info collapse" id={`collapse-${this.props.movie.id}`}>
             <div className="card card-body">
-              <p>{this.props.movie.year}</p>
-              <p><em>{this.props.movie.genre}</em></p>
-              <img src={'https://image.tmdb.org/t/p/w500' + this.props.movie.poster_path} alt={`Movie poster for ${this.props.movie.title}`}/>
-              <p>{this.props.movie.overview}</p>
+              <div className="d-flex flex-column flex-lg-row">
+                <div>
+                  <p>{this.props.movie.year}</p>
+                  <p><em>{this.props.movie.genre}</em></p>
+                  <p>{this.props.movie.overview}</p>
+                </div>
+                <img className="movie__poster ml-lg-3" src={'https://image.tmdb.org/t/p/w300' + this.props.movie.poster_path} alt={`Movie poster for ${this.props.movie.title}`}/>
+              </div>
               <div className="d-flex">
                 <button className="btn btn-danger m-1" data-toggle="modal" data-target={`#removeModal-${this.props.movie.id}`}>
                   Remove
