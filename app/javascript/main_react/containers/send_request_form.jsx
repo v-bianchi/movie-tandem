@@ -5,9 +5,13 @@ import { connect } from "react-redux"
 import { sendRequest } from '../actions'
 
 class SendRequestForm extends Component {
+  componentDidUpdate() {
+    document.getElementById('send-request-input').value = "" // clear input field
+    $('#sendRequestModal').modal('hide') // close modal
+  }
+
   handleClick = () => {
     this.props.sendRequest(document.getElementById('send-request-input').value, this.props.userData)
-    document.getElementById('send-request-input').value = ""
   }
 
   render() {
@@ -45,6 +49,7 @@ class SendRequestForm extends Component {
 
 function mapStateToProps(state) {
   return {
+    requests: state.requests,
     userData: state.userData
   }
 }
