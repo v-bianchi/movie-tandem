@@ -39,9 +39,22 @@ class MovieList extends Component {
         </div>
       )
     } else {
+      let message = ''
+      if (this.props.userData) {
+        if (this.props.watchlists.length > 0) {
+          message = <p>Select a friend to view your watchlist with them.</p>
+        } else {
+          message = <p>You don't have any watchlists yet! Click on 'Add new friend' to invite your buddy to start a watchlist with you.</p>
+        }
+      } else {
+        message = <div>
+                    <h2>Welcome to Movie Tandem!</h2>
+                    <p>Log in or sign up to create watchlists with friends!</p>
+                  </div>
+      }
       return (
         <div className="movie-list p-4">
-          <p>Select a buddy to view your watchlist with them</p>
+          {message}
         </div>
       )
     }
@@ -50,6 +63,7 @@ class MovieList extends Component {
 
 function mapStateToProps(state) {
   return {
+    watchlists: state.watchlists,
     selectedWatchlist: state.selectedWatchlist,
     movies: state.movies,
     userData: state.userData
