@@ -5,9 +5,12 @@ import { connect } from "react-redux"
 import { sendRequest } from '../actions'
 
 class SendRequestForm extends Component {
-  componentDidUpdate() {
-    document.getElementById('send-request-input').value = "" // clear input field
-    $('#sendRequestModal').modal('hide') // close modal
+  componentDidUpdate(prevProps) {
+    // Close modal when new request is sent or received
+    if(this.props.requests.length !== prevProps.requests.length ) {
+      document.getElementById('send-request-input').value = "" // clear input field
+      $('#sendRequestModal').modal('hide') // close modal
+    }
   }
 
   handleClick = () => {
@@ -25,7 +28,7 @@ class SendRequestForm extends Component {
         </div>
 
         {/* Modal */}
-        <div className="modal fade" id="sendRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="sendRequestModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered text-dark" role="document">
             <div className="modal-content">
               <div className="modal-header">
