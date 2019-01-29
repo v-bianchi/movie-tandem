@@ -10,7 +10,7 @@ json.user_2 do
   json.last_name @list.user_2.last_name
 end
 json.movies @list.movies.sort_by { |elt|  elt.created_at } do |movie|
-  json.extract! movie, :id, :title, :year, :genre, :overview, :watched, :created_at
+  json.extract! movie, :id, :title, :year, :genre, :overview, :poster_path, :watched, :created_at
   json.added_by do
     json.extract! movie.user, :id, :first_name, :last_name
   end
