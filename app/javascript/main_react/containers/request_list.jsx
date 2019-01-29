@@ -10,9 +10,23 @@ class RequestList extends Component {
   
   componentWillMount() {
     if (this.props.userData) {
-      this.props.fetchRequests(this.props.userData);
+      this.props.fetchRequests(this.props.userData)
     }
   }
+
+  componentDidMount() {
+    if (this.props.userData) {
+      const interval = setInterval(() => {
+        this.props.fetchRequests(this.props.userData)
+      }, 4000)
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(interval)
+  }
+
+
 
   render() {
     return (
