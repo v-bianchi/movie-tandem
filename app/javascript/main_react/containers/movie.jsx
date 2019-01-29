@@ -35,6 +35,7 @@ class Movie extends Component {
             <div className="card card-body">
               <p>{this.props.movie.year}</p>
               <p><em>{this.props.movie.genre}</em></p>
+              <img src={'https://image.tmdb.org/t/p/w500' + this.props.movie.poster_path} alt={`Movie poster for ${this.props.movie.title}`}/>
               <p>{this.props.movie.overview}</p>
               <div className="d-flex">
                 <button className="btn btn-danger m-1" data-toggle="modal" data-target={`#removeModal-${this.props.movie.id}`}>

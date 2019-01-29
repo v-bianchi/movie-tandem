@@ -38,7 +38,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :year, :genre, :overview)
+    params.require(:movie).permit(:title, :year, :genre, :overview, :poster_path)
   end
 
   def render_error(entity)
