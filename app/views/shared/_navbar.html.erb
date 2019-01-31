@@ -12,7 +12,11 @@
       <% if user_signed_in? %>
         <li class="navbar-text d-flex align-items-center">
           <span class="mr-2">signed in as <%= current_user.name %></span>
-          <%= image_tag current_user.photo.url(:avatar), class: "user-image" %>
+          <% if current_user.photo.url %>
+            <%= image_tag current_user.photo.url(:avatar), class: "user-image" %>
+          <% else %>
+            <img class="user-image" src="https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg" alt=""/>
+          <% end %>
         </li>
         <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
       <% else %>

@@ -13,6 +13,11 @@ class SideNavItem extends Component {
     const otherPerson = this.props.watchlist.user_1.id == this.props.userData.id
                       ? this.props.watchlist.user_2
                       : this.props.watchlist.user_1
+
+    const otherPersonPhoto =  otherPerson.photo.avatar.url
+                              ? <img src={otherPerson.photo.avatar.url} alt={`Picture of ${otherPerson.name}`} className="user-image"/>
+                              : <img className="user-image" src="https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg" alt=""/>
+
     return (
       <li onClick={this.handleClick}
         className={this.props.selectedWatchlist.id == this.props.watchlist.id
@@ -20,7 +25,7 @@ class SideNavItem extends Component {
                     : 'd-flex align-items-center p-3'
                   }
       >
-        <img src={otherPerson.photo.avatar.url} alt={`Picture of ${otherPerson.name}`} className="user-image"/>
+        {otherPersonPhoto}
         <span className="ml-2">{otherPerson.name}</span>
       </li>
     )
