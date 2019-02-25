@@ -10,6 +10,7 @@ class SendRequestForm extends Component {
     if(this.props.requests.length !== prevProps.requests.length ) {
       document.getElementById('send-request-input').value = "" // clear input field
       $('#sendRequestModal').modal('hide') // close modal
+      $('#error-box').html('')
     }
   }
 
@@ -40,6 +41,7 @@ class SendRequestForm extends Component {
               <div className="modal-body">
                 <p>Please enter your friend's email address</p>
                 <input id="send-request-input" type="email" placeholder="email" className="form-control"/>
+                <div id="error-box"></div>
                 <button onClick={this.handleClick} className="btn btn-warning mt-2 w-100">Send request</button>
               </div>
             </div>

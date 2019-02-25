@@ -5,7 +5,11 @@ export default function(state = null, action) {
     case FETCH_REQUESTS:
       return action.payload
     case SEND_REQUEST:
-      return state.concat(action.payload)
+      if(action.status === 'success') {
+        return state.concat(action.payload)
+      } else {
+        return state
+      }
     case REMOVE_REQUEST:
       return state.filter((elt) => elt.id !== action.deletedRequestId)
     case ACCEPT_REQUEST:

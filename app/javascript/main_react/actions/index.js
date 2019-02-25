@@ -178,9 +178,26 @@ export function sendRequest(receiverEmail, userData) {
   })
     .then(response => response.json())
     .then((data) => {
-      return {
-        type: SEND_REQUEST,
-        payload: data
+      console.log("data", data)
+      if (data.errors) {
+        $('#error-box').html(`<div class="alert alert-danger mb-0 alert-dismissible" role="alert">
+                                  ${data.errors[0]}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>`)
+        return {
+          type: SEND_REQUEST,
+          status: 'error',
+          payload: data
+        }
+      } else {
+        $('#error-box').html('')
+        return {
+          type: SEND_REQUEST,
+          status: 'success',
+          payload: data
+        }
       }
     })
 }
