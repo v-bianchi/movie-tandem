@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
+require('dotenv').config()
 
 // internal modules
 import App from "./components/app";
