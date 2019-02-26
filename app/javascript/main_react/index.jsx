@@ -3,7 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
 
 // internal modules
@@ -34,8 +33,15 @@ const initialState = {
   requests: []
 }
 
+let middlewares = []
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const middlewares = composeEnhancers(applyMiddleware(logger, reduxPromise));
+
+if (process.env.NODE_ENV === `development`) {
+  const { logger } = require(`redux-logger`);
+  middlewares = composeEnhancers(applyMiddleware(logger, reduxPromise));
+} else {
+  middlewares = composeEnhancers(applyMiddleware(reduxPromise));
+}
 
 // render an instance of the component in the DOM
 ReactDOM.render(
