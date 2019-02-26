@@ -22,9 +22,6 @@ class MovieList extends Component {
 
   render() {
     if(this.props.selectedWatchlist.id) {
-      const otherPersonName = this.props.selectedWatchlist.user_1.id == this.props.userData.id
-                            ? this.props.selectedWatchlist.user_2.name
-                            : this.props.selectedWatchlist.user_1.name
       return (
         <div className="movie-list p-4">
           <ul className="list-unstyled">
