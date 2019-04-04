@@ -58,6 +58,17 @@ body {
   }
 }
 
+.btn-round {
+  height: 30px;
+  width: 30px;
+  border-radius: 999px;
+  font-size: 8px;
+  &:active,
+  &:focus {
+    outline: none !important;
+  }
+}
+
 // UTILITIES
 
 .cursor-pointer {

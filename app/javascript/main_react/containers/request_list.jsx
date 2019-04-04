@@ -7,7 +7,7 @@ import Request from "./request";
 import { fetchRequests } from '../actions'
 
 class RequestList extends Component {
-  
+
   componentWillMount() {
     if (this.props.userData) {
       this.props.fetchRequests(this.props.userData)
@@ -35,13 +35,13 @@ class RequestList extends Component {
         {this.props.requests.filter((elt) => elt.sender.id == this.props.userData.id).map((request, index) => {
           return (
             <Request key={index} request={request} nature="sent" />
-          ) 
+          )
         })}
         {/* Requests RECEIVED by current user */}
         {this.props.requests.filter((elt) => elt.receiver.id == this.props.userData.id).map((request, index) => {
           return (
             <Request key={index} request={request} nature="received" />
-          ) 
+          )
         })}
       </div>
     )

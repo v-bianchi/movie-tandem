@@ -9,7 +9,7 @@ import RequestList from "./request_list"
 import { fetchWatchlists } from '../actions'
 
 class SideNav extends Component {
-  
+
   componentWillMount() {
     if (this.props.userData) {
       this.props.fetchWatchlists(this.props.userData);
@@ -36,8 +36,35 @@ class SideNav extends Component {
             return <SideNavItem key={index} watchlist={watchlist} tabIndex={index} />
           })}
         </ul>
-        <RequestList />
-        <SendRequestForm />
+        <div className="d-none d-md-block">
+          <RequestList />
+          <SendRequestForm />
+        </div>
+        <div className="d-block d-md-none">
+          <p className="text-center">
+            <button
+              className="btn-round"
+              type="button"
+              data-toggle="collapse"
+              data-target="#requests-collapse"
+              aria-expanded="false"
+              aria-controls="requests-collapse"
+              onClick={(event) => {
+                if(event.target.innerHTML == '▼') {
+                  event.target.innerHTML = '▲'
+                } else {
+                  event.target.innerHTML = '▼'
+                }
+              }}
+            >
+              ▼
+            </button>
+          </p>
+          <div className="collapse" id="requests-collapse">
+            <RequestList />
+            <SendRequestForm />
+          </div>
+        </div>
       </div>
     )
   }
